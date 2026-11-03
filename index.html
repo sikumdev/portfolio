@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>김시연 포트폴리오</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 홈은 대표작 1개 + 2열 카드, 상세는 고정 목차 → 요약 → 화면 → 문제·판단·기능·설계·결과 */
+:root {
+  --bg: #fafafa; --surface: #ffffff; --ink: #111418; --body: #3d434c; --muted: #646b75; --line: #e4e6ea;
+  --pill: #eff0f2; --accent: #2f4f8f; --accent-soft: #edf1f8;
+  --t-blue: #e6ecf5; --t-blue-l: #d3dceb; --t-sand: #f3ece6; --t-sand-l: #e6dacf; --t-sand-ink: #8f5f49;
+  --t-green: #e6efe9; --t-green-l: #d0e0d5; --t-green-ink: #3a7250; --t-gray: #eceef1; --t-gray-l: #dcdfe4;
+  --font: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, video { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { text-wrap: balance; font-weight: 600; margin: 0; }
+
+/* top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 24px 0; }
+.avatar { width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--surface); display: grid; place-items: center; font-weight: 600; font-size: 15px; text-decoration: none; }
+.pills { display: flex; gap: 2px; background: var(--pill); border: 1px solid var(--line); border-radius: 999px; padding: 4px; flex-wrap: wrap; justify-content: center; }
+.pills a, .pills button { font: inherit; font-size: 14px; padding: 8px 15px; border-radius: 999px; border: 0; background: none; color: var(--muted); text-decoration: none; cursor: pointer; white-space: nowrap; }
+.pills .on { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(17,20,24,.06); }
+.pills .navlk { background: var(--ink); color: var(--surface); font-weight: 600; margin-left: 4px; }
+
+/* home */
+.hero { padding-block: 72px 64px; }
+.kicker { margin: 0 0 16px; font-size: 15px; font-weight: 500; color: var(--muted); }
+.kicker b { color: var(--ink); font-weight: 600; }
+.hero h1 { font-size: clamp(28px, 4.4vw, 42px); line-height: 1.35; letter-spacing: -0.8px; max-width: 20em; }
+.hero .sub { margin: 16px 0 0; font-size: 17px; line-height: 1.75; color: var(--body); max-width: 36em; }
+.sectitle { font-size: 28px; letter-spacing: -0.5px; margin: 0 0 24px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px 24px; }
+.item.feature { grid-column: 1 / -1; }
+.card { text-decoration: none; color: var(--ink); display: block; }
+.card:hover .thumb { transform: translateY(-3px); }
+.cap { display: flex; justify-content: space-between; gap: 12px; padding-top: 14px; font-size: 15px; }
+.cap b { font-weight: 500; }
+.cap span { color: var(--muted); white-space: nowrap; }
+.cap small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+.links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.lk { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 10px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.lk.primary { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.lk:hover { filter: brightness(.95); }
+
+/* thumbnails */
+.thumb { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 20px; padding: 9% 11% 0; display: flex; overflow: hidden; transition: transform .25s ease; }
+.item.feature .thumb { aspect-ratio: 16 / 7; padding: 4% 9% 0; }
+.shot { flex: 1; min-width: 0; border-radius: 12px 12px 0 0; border: 1px solid var(--t-blue-l); border-bottom: 0; overflow: hidden; background: var(--surface); }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.phones { flex: 1; display: flex; gap: 4%; justify-content: center; min-width: 0; }
+.phones img { width: 30%; height: auto; align-self: flex-start; border-radius: 14px 14px 0 0; border: 1px solid var(--t-green-l); border-bottom: 0; }
+.screen { flex: 1; background: var(--surface); border-radius: 12px 12px 0 0; border: 1px solid var(--t-sand-l); border-bottom: 0; padding: 20px; display: flex; flex-direction: column; gap: 11px; font-size: 12.5px; color: var(--body); min-width: 0; }
+.screen .meta { font-size: 11.5px; color: var(--muted); }
+.blue { background: var(--t-blue); } .sand { background: var(--t-sand); } .green { background: var(--t-green); }
+.bars { display: grid; grid-template-columns: 72px 1fr; gap: 9px 10px; align-items: center; }
+.bar { height: 6px; border-radius: 3px; background: var(--t-sand); }
+.bar i { display: block; height: 100%; border-radius: 3px; background: var(--t-sand-ink); }
+
+footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 44px 64px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; font-size: 14px; }
+footer.site b { font-size: 18px; font-weight: 600; }
+footer.site p { margin: 6px 0 0; color: var(--muted); }
+footer.site h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
+footer.site ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--muted); }
+footer.site a { color: var(--muted); text-decoration: none; }
+footer.site a:hover { color: var(--ink); }
+
+/* case study */
+.casenav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; justify-content: center; padding-block: 14px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.casehead { padding-block: 40px 0; }
+.eyebrow { font-size: 14px; color: var(--muted); margin: 0; }
+.casehead h1 { margin-top: 10px; font-size: clamp(30px, 4.6vw, 40px); letter-spacing: -0.8px; line-height: 1.3; }
+.casehead p.lede { margin: 14px 0 0; font-size: 17px; color: var(--body); max-width: 44em; }
+.stage { margin-top: 36px; border-radius: 20px; padding: 28px; }
+.stage video { width: 100%; border-radius: 10px; border: 1px solid var(--t-blue-l); background: var(--surface); }
+.stage figcaption, .gallery figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-block: 30px; border-bottom: 1px solid var(--line); font-size: 15px; margin: 0; }
+.facts dt { font-weight: 600; margin-bottom: 4px; }
+.facts dd { margin: 0; color: var(--body); }
+.sec { padding-block: 52px; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }
+.sec:last-of-type { border-bottom: 0; }
+.label { margin: 0 0 10px; font-size: 14px; font-weight: 600; color: var(--accent); }
+.label span { color: var(--muted); font-weight: 400; }
+.mine { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 1px 8px; vertical-align: 2px; }
+.sec h2 { font-size: 24px; margin-bottom: 14px; }
+.sec p, .sec li { color: var(--body); font-size: 16px; line-height: 1.8; }
+.sec p { margin: 0; max-width: 46em; }
+.sec ul { margin: 0; padding-left: 20px; max-width: 46em; }
+.sec .note { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 24px; }
+.cards > div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; min-width: 0; }
+.cards h3 { font-size: 16px; margin-bottom: 6px; }
+.cards p { font-size: 15px; line-height: 1.7; }
+
+.tbl { margin-top: 24px; overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.tbl table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+.tbl th, .tbl td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--body); }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl thead th { font-size: 13px; font-weight: 600; color: var(--muted); background: #f6f7f9; }
+.tbl tbody th { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.tbl .hl { background: var(--accent-soft); color: var(--ink); font-weight: 600; }
+.tbl td.num, .tbl th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.gallery figure { margin: 0; min-width: 0; }
+.gallery img { width: 100%; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.gallery b { display: block; margin-top: 10px; font-size: 15px; color: var(--ink); }
+.gallery.phone { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.gallery.phone img { border-radius: 16px; }
+.videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
+.videos figure { margin: 0; min-width: 0; }
+.videos video { width: 100%; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.videos b { display: block; margin-top: 10px; font-size: 15px; }
+.videos span { font-size: 14px; color: var(--muted); }
+
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.split > div { border-radius: 14px; padding: 20px; border: 1px solid var(--line); background: var(--surface); min-width: 0; }
+.split .good { border-color: #c4d2e8; background: var(--accent-soft); }
+.split h3 { font-size: 15px; margin-bottom: 14px; }
+.chunks { display: flex; gap: 6px; flex-wrap: wrap; }
+.chunks span { font-size: 13px; padding: 8px 10px; border-radius: 8px; background: var(--pill); color: var(--body); }
+.good .chunks span { background: var(--surface); border: 1px solid #c4d2e8; color: var(--ink); }
+.cut { position: relative; }
+.cut::after { content: ""; position: absolute; top: -4px; bottom: -4px; left: 50%; border-left: 2px dashed #b4302f; }
+.split p.small { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+.results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 8px; }
+.results div b { display: block; font-size: 30px; font-weight: 600; letter-spacing: -0.5px; font-variant-numeric: tabular-nums; }
+.results div span { font-size: 15px; color: var(--body); }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.stack span { font-size: 13px; padding: 4px 10px; border-radius: 6px; background: var(--pill); color: var(--body); }
+
+/* 선크림 화면 설계안 (대화 시나리오) */
+.convo { max-width: 520px; margin: 0 auto; background: var(--surface); border: 1px solid var(--t-sand-l); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; }
+.u { align-self: flex-end; background: var(--ink); color: var(--surface); padding: 9px 13px; border-radius: 14px 14px 3px 14px; }
+.b { align-self: flex-start; max-width: 88%; background: #f4f1ee; padding: 11px 14px; border-radius: 14px 14px 14px 3px; line-height: 1.65; color: var(--ink); }
+.node { font-size: 11.5px; color: var(--muted); font-family: ui-monospace, Menlo, monospace; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chips span { font-size: 13px; border: 1px solid var(--t-sand-l); border-radius: 999px; padding: 4px 12px; background: var(--surface); }
+.chips span.on { background: var(--t-sand-ink); border-color: var(--t-sand-ink); color: var(--surface); }
+.b ol { margin: 6px 0 0; padding-left: 20px; }
+.b li { font-size: 14px; line-height: 1.7; }
+
+.casefoot { padding-block: 32px 72px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+.casefoot a { text-decoration: none; font-weight: 500; }
+.casefoot a:hover { text-decoration: underline; }
+
+@media (max-width: 760px) {
+  .hero { padding-block: 44px 40px; }
+  .item.feature .thumb { aspect-ratio: 4 / 3; padding: 7% 7% 0; }
+  .grid, .videos, .split { grid-template-columns: 1fr; }
+  .facts, .results, .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery.phone { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  footer.site { grid-template-columns: 1fr 1fr; }
+  footer.site > div:first-child { grid-column: 1 / -1; }
+  .stage { padding: 14px; }
+  .top { flex-wrap: wrap; }
+}
+@media (max-width: 460px) {
+  .results { grid-template-columns: 1fr; }
+  .gallery.phone { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cap { flex-direction: column; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { .thumb { transition: none; } .card:hover .thumb { transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- ========== HOME ========== -->
+<main id="v-home" data-view>
+<div class="wrap">
+  <header class="top">
+    <a class="avatar" href="#" aria-label="홈">시연</a>
+    <nav class="pills" aria-label="메뉴"><a class="on" href="#">Projects</a></nav>
+  </header>
+
+  <section class="hero">
+    <p class="kicker"><b>김시연</b> · IT 서비스 운영 · AX 기획</p>
+    <h1>반복되는 문의에서 문제를 찾고,<br>AI로 풀 지점을 설계합니다.</h1>
+    <p class="sub">한국감정평가사협회 IT정보센터에서 1년 6개월간 회원 문의와 시스템을 운영했고, 지금은 RAG · 에이전트 기반 서비스를 기획합니다.</p>
+  </section>
+
+  <h2 class="sectitle" id="projects-title">Projects</h2>
+  <section class="grid" aria-labelledby="projects-title">
+    <div class="item feature">
+      <a class="card" href="#chatbot">
+        <div class="thumb blue"><div class="shot"><img src="media/chatbot-general.jpg" alt="찾아드림 실제 서비스 화면: 등록한 에어컨 모델의 설명서 그림과 함께 필터 청소 방법을 답하는 모습"></div></div>
+        <div class="cap"><b>근거가 없으면 답하지 않는 가전 챗봇<small>RAG · 서비스 기획 · 청킹</small></b><span>찾아드림 · 2026</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#chatbot">상세 보기 →</a><a class="lk" href="https://github.com/Broogun/ask-my-appliance" target="_blank" rel="noopener">GitHub ↗</a></div>
+    </div>
+
+    <div class="item">
+      <a class="card" href="#sunscreen">
+        <div class="thumb sand" aria-hidden="true"><div class="screen">
+          <div class="meta">지성 · 백탁 싫어요 · 데일리</div>
+          <div style="font-weight:600;color:var(--ink)">추천 선크림</div>
+          <div class="bars">
+            <span>산뜻함</span><span class="bar"><i style="width:82%"></i></span>
+            <span>백탁</span><span class="bar"><i style="width:64%"></i></span>
+            <span>자극</span><span class="bar"><i style="width:72%"></i></span>
+          </div>
+          <div class="meta">리뷰 근거 보기 →</div>
+        </div></div>
+        <div class="cap"><b>리뷰 7,500건을 근거로 보여주는 선크림 추천<small>RAG · LangGraph · 개인</small></b><span>올리브영 리뷰 · 2026</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#sunscreen">상세 보기 →</a></div>
+    </div>
+
+    <div class="item">
+      <a class="card" href="#meetup">
+        <div class="thumb green"><div class="phones">
+          <img src="media/meet-1-menu.jpg" alt="텔레그램 봇 메뉴 화면">
+          <img src="media/meet-3-activity.jpg" alt="관심 활동 입력 화면">
+          <img src="media/meet-5-result.jpg" alt="추천 장소와 참여자별 이동 시간 결과 화면">
+        </div></div>
+        <div class="cap"><b>모두에게 공평한 모임 장소 정하기<small>n8n · 텔레그램 봇 · 개인</small></b><span>우리 어디서 봐? · 2026</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#meetup">상세 보기 →</a></div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div><b>김시연</b><p>IT 서비스 운영 · AX 기획</p></div>
+    <div><h3>Projects</h3><ul><li><a href="#chatbot">찾아드림</a></li><li><a href="#sunscreen">선크림 추천 RAG</a></li><li><a href="#meetup">우리 어디서 봐?</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li>moonjungkim99@gmail.com</li></ul></div>
+  </footer>
+</div>
+</main>
+
+<!-- ========== CASE: 찾아드림 ========== -->
+<article id="v-chatbot" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="c1-pb">문제</button><button type="button" data-jump="c1-dc">판단</button><button type="button" data-jump="c1-ft">기능</button><button type="button" data-jump="c1-sc">화면</button><button type="button" data-jump="c1-ds">설계</button><button type="button" data-jump="c1-rs">결과</button><a class="navlk" href="https://github.com/Broogun/ask-my-appliance" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">찾아드림 · LG CNS AI 캠퍼스 1조 · 2026</p>
+      <h1>근거가 없으면 답하지 않는 가전 챗봇</h1>
+      <p class="lede">LG·삼성 60개 모델의 사용설명서를 검색 대상으로 두고, 답변의 모든 문장에 출처 쪽 번호와 설명서 그림을 붙이는 RAG 챗봇입니다.</p>
+      <div class="links"><a class="lk primary" href="https://github.com/Broogun/ask-my-appliance" target="_blank" rel="noopener">GitHub 보기 ↗</a></div>
+    </header>
+    <figure class="stage blue" style="margin-inline:0">
+      <video src="media/chatbot-error.mp4" poster="media/chatbot-error.jpg" autoplay muted loop playsinline controls aria-label="에러코드 질문에 원인과 조치를 답하는 시연 영상"></video>
+      <figcaption>시연 · 에러코드를 물으면 RDB 정확 매칭으로 원인과 조치를 바로 답합니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>내 역할</dt><dd>서비스 기획 · 청킹 전략</dd></div>
+      <div><dt>기간</dt><dd>2026.09.07 – 09.28</dd></div>
+      <div><dt>팀</dt><dd>4인</dd></div>
+      <div><dt>산출물</dt><dd>PRD · 기능정의서 · 와이어프레임</dd></div>
+    </dl>
+
+    <section class="sec" id="c1-pb">
+      <p class="label">문제</p>
+      <h2>증상은 아는데, 해결까지 넘어야 할 단계가 많다</h2>
+      <p>"에어컨에 물이 새는데 설명서는 어딜 봐야 하죠?" 사용자는 증상만 압니다. 검색어를 고민하고, 정보를 찾고, 근거를 해석하고, 다시 확인하는 일을 모두 혼자 해야 합니다.</p>
+      <div class="cards">
+        <div><h3>시간</h3><p>검색과 재확인이 반복된다</p></div>
+        <div><h3>정확성</h3><p>다른 모델 정보가 섞일 수 있다</p></div>
+        <div><h3>신뢰</h3><p>찾은 답을 믿고 실행하기 어렵다</p></div>
+        <div><h3>접근</h3><p>버린 설명서를 다시 구하기 어렵다</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c1-dc">
+      <p class="label">판단</p>
+      <h2>RAG는 모델별 설명서로 범위를 좁히고 출처까지 준다</h2>
+      <p>지식iN은 광고성 글이 섞이고, 범용 AI는 없는 기능도 있는 것처럼 답하며, 제조사 AI는 모델명을 넣어도 설명서 기반 답변이 아니라고 밝힙니다. 세 방식을 같은 기준으로 비교했습니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">기준</th><th scope="col">구글 · 네이버 검색</th><th scope="col">범용 LLM</th><th scope="col" class="hl">찾아드림 RAG</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">사용자 표현 이해</th><td>직접 찾아야 함</td><td>강함</td><td class="hl">가능</td></tr>
+          <tr><th scope="row">내 모델 기준 답변</th><td>보장 어려움</td><td>보장 어려움</td><td class="hl">가능</td></tr>
+          <tr><th scope="row">답변 근거 확인</th><td>보장 어려움</td><td>보장 어려움</td><td class="hl">가능</td></tr>
+          <tr><th scope="row">근거 없을 때 보류</th><td>보장 어려움</td><td>보장 어려움</td><td class="hl">가능</td></tr>
+          <tr><th scope="row">답변까지 걸리는 시간</th><td>오래 걸림</td><td>빠름</td><td class="hl">빠름</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="c1-ft">
+      <p class="label">주요 기능</p>
+      <h2>사용자는 증상만 말하고, 탐색과 확인은 찾아드림이 맡는다</h2>
+      <div class="cards">
+        <div><h3>내 모델 설명서만 검색</h3><p>제품을 한 번 등록하면 그 모델의 설명서 안에서만 근거를 찾습니다.</p></div>
+        <div><h3>에러코드 정확 매칭</h3><p>"CH05 떠요"처럼 코드를 물으면 RDB에서 정확히 찾아 원인과 조치를 답합니다.</p></div>
+        <div><h3>쪽 번호 · 그림 · 원문</h3><p>답변 줄마다 설명서 쪽 번호와 그림을 붙이고, PDF 원문으로 바로 확인할 수 있습니다.</p></div>
+        <div><h3>근거가 없으면 보류</h3><p>관련 근거가 기준에 못 미치면 추측하지 않고 "찾지 못했습니다"라고 답합니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c1-sc">
+      <p class="label">화면</p>
+      <h2>제품 등록 → 질문 → 답변 → 출처 확인</h2>
+      <div class="gallery">
+        <figure><img src="media/chat-flow-1.jpg" alt="제품 등록 화면" loading="lazy"><b>1 · 제품 등록</b><figcaption>모델명으로 내 제품 추가</figcaption></figure>
+        <figure><img src="media/chat-flow-2.jpg" alt="자연어 질문 화면" loading="lazy"><b>2 · 자연어 질문</b><figcaption>평소 말로 증상 입력</figcaption></figure>
+        <figure><img src="media/chat-flow-3.jpg" alt="모델별 답변 화면" loading="lazy"><b>3 · 모델별 답변</b><figcaption>내 모델 설명서 근거로 답변</figcaption></figure>
+        <figure><img src="media/chat-flow-4.jpg" alt="출처 확인 화면" loading="lazy"><b>4 · 출처 확인</b><figcaption>쪽 번호와 PDF 원문 보기</figcaption></figure>
+      </div>
+      <div class="videos">
+        <figure><video src="media/chatbot-error.mp4" poster="media/chatbot-error.jpg" muted loop playsinline controls preload="none"></video><b>에러코드 케이스</b><span>RDB 정확 매칭 → 원인 · 조치 답변</span></figure>
+        <figure><video src="media/chatbot-general.mp4" poster="media/chatbot-general.jpg" muted loop playsinline controls preload="none"></video><b>일반 질문 케이스</b><span>벡터 검색 · 리랭킹 → 설명서 그림 포함 답변</span></figure>
+      </div>
+    </section>
+
+    <section class="sec" id="c1-ds">
+      <p class="label">설계 <span class="mine">내 담당</span></p>
+      <h2>설명서의 목차를 그대로 청크 단위로 쓴다</h2>
+      <p>설명서에는 이미 "필터 분리하기 → 극세 필터 청소하기"처럼 목차 구조가 있습니다. 고정 길이로 자르면 한 절의 설명이 중간에 끊겨 답변이 반쪽이 되기 때문에, 목차 경계를 그대로 청크 단위로 썼습니다.</p>
+      <div class="split">
+        <div><h3>고정 길이로 자르면 · 절이 중간에 끊긴다</h3>
+          <div class="chunks"><span>필터 분리하기</span><span class="cut">극세 필터 청소하기</span><span class="cut">알러지케어 집진 필터 청소하기</span><span>필터 끼우기</span></div>
+          <p class="small">청크 3개 · 경계가 절 한가운데를 지난다</p></div>
+        <div class="good"><h3>목차 단위로 자르면 · 절 하나가 청크 하나</h3>
+          <div class="chunks"><span>필터 분리하기</span><span>극세 필터 청소하기</span><span>알러지케어 집진 필터 청소하기</span><span>필터 끼우기</span></div>
+          <p class="small">청크 4개 · 700자 이상 · 15% 오버랩 · 목차 없는 PDF와 고장 신고 표는 예외 규칙</p></div>
+      </div>
+      <p class="note">기획 산출물: 기능 요구사항 13개 · 화면 13개 · 기능 45개 정의, 와이어프레임 16개 화면</p>
+    </section>
+
+    <section class="sec" id="c1-rs">
+      <p class="label">결과 <span>· 팀 결과, 900문항 평가</span></p>
+      <h2>가장 나쁜 실패인 "근거 없는 확신 답변"은 0건</h2>
+      <div class="results">
+        <div><b>0건</b><span>근거 없는 확신 답변</span></div>
+        <div><b>84.6% → 92.3%</b><span>리랭킹 후 Top-5 적중</span></div>
+        <div><b>약 4.5원</b><span>답변 1건당 비용</span></div>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">판정</th><th scope="col" class="num">round1 · 흔한 문의</th><th scope="col" class="num">round2 · 세부 기능</th><th scope="col" class="num">round3 · 앱 · 설치</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">성공</th><td class="num">268 (89.3%)</td><td class="num">227 (75.7%)</td><td class="num">240 (80.0%)</td></tr>
+          <tr><th scope="row">설명서에 없어 답하지 않음</th><td class="num">29 (9.7%)</td><td class="num">71 (23.7%)</td><td class="num">56 (18.7%)</td></tr>
+          <tr><th scope="row">근거가 있는데 포기</th><td class="num">3 (1.0%)</td><td class="num">2 (0.7%)</td><td class="num">4 (1.3%)</td></tr>
+          <tr><th scope="row">근거 없이 확신</th><td class="num hl">0</td><td class="num hl">0</td><td class="num hl">0</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">5문항 × 60개 모델 × 3라운드. 설명서에 없는 내용을 묻는 경우도 있어 정답률 대신 4가지로 분류해 판정했습니다.</p>
+      <div class="stack"><span>RAG</span><span>pgvector</span><span>BGE-m3-ko</span><span>gpt-4o-mini</span><span>FastAPI</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#sunscreen">다음 · 선크림 추천 RAG →</a></div></div>
+</article>
+
+<!-- ========== CASE: 선크림 ========== -->
+<article id="v-sunscreen" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="c2-pb">문제</button><button type="button" data-jump="c2-ft">기능</button><button type="button" data-jump="c2-dt">데이터</button><button type="button" data-jump="c2-pl">예외 정책</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">올리브영 리뷰 기반 추천 · 개인 프로젝트 · 2026</p>
+      <h1>리뷰 7,500건을 근거로 보여주는 선크림 추천</h1>
+      <p class="lede">"선크림이 수백 개인데, 리뷰를 다 읽지 않고 어떻게 내 피부에 맞는 걸 고를까?" 실구매 리뷰를 기준별로 수치화해, 추천과 함께 근거를 보여주는 챗봇을 만들었습니다.</p>
+    </header>
+    <figure class="stage sand" style="margin-inline:0">
+      <div class="convo" aria-label="화면 설계안: 대화 시나리오">
+        <div class="u">선크림 추천해줘</div>
+        <div class="node">ask_skin_type_node</div>
+        <div class="b">먼저 피부타입을 알려주시면 더 정확하게 추천드려요</div>
+        <div class="chips"><span>건성</span><span class="on">지성</span><span>복합성</span><span>민감성</span></div>
+        <div class="node">rec_subgraph → generate_answer_node</div>
+        <div class="b"><b>지성 피부에 끈적임 없는 선크림 TOP 3</b>
+          <ol><li>A 선크림 · "끈적임 없음" 언급 비율 · 신뢰도</li><li>B 선크림 · "산뜻한 발림성" 언급 비율 · 신뢰도</li><li>C 선크림 · 다양성 보너스 적용</li></ol></div>
+      </div>
+      <figcaption>화면 설계안 · LangGraph CLI로 구현해 화면 대신 기획 단계의 대화 시나리오를 옮겼습니다. 회색 글씨는 실제 노드 이름입니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>역할</dt><dd>기획 · 데이터 가공 · 구현 · 품질 검증</dd></div>
+      <div><dt>기간</dt><dd>2026.03 – 04</dd></div>
+      <div><dt>팀</dt><dd>개인</dd></div>
+      <div><dt>데이터</dt><dd>선크림 30개 · 리뷰 7,500건</dd></div>
+    </dl>
+
+    <section class="sec" id="c2-pb">
+      <p class="label">문제</p>
+      <h2>리뷰가 너무 많아 판단 근거가 되지 못한다</h2>
+      <p>인기 제품은 리뷰가 수만 건입니다. 평점만으로는 "지성인데 끈적이지 않는지" 같은 내 기준을 알 수 없습니다. 리뷰 1,000건 이상인 선크림 30개를 골라, 피부타입별로 균등하게 샘플링해 7,500건을 모았습니다.</p>
+    </section>
+
+    <section class="sec" id="c2-ft">
+      <p class="label">주요 기능</p>
+      <h2>모르면 먼저 묻고, 수치는 지어내지 않는다</h2>
+      <div class="cards">
+        <div><h3>정보가 부족하면 되묻기</h3><p>피부타입이나 비교 제품이 빠지면 검색하지 않고 먼저 묻습니다. 대답을 받으면 멈춘 지점부터 이어갑니다.</p></div>
+        <div><h3>DB 수치를 그대로 노출</h3><p>"끈적임 없음 80%" 같은 수치는 LLM이 아니라 집계 데이터에서 그대로 가져옵니다.</p></div>
+        <div><h3>3회 재검색 후 대안</h3><p>결과가 빈약하면 질문을 다시 써서 최대 3회 검색하고, 그래도 없으면 비슷한 조건의 대안을 보여줍니다.</p></div>
+        <div><h3>같은 제품 반복 방지</h3><p>이미 추천한 제품은 점수를 절반으로 낮춰 다른 제품도 함께 보여줍니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c2-dt">
+      <p class="label">데이터</p>
+      <h2>리뷰를 8개 기준으로 나눠 체감 비율로 집계</h2>
+      <p>키워드 매칭은 "끈적이지 않아요"를 "끈적임"으로 잘못 분류합니다. 그래서 LLM으로 리뷰마다 8개 기준(산뜻함 · 끈적임 · 보습 · 자극 · 백탁 · 밀림 · 지속력 · 눈시림)을 긍정 · 부정 · 언급 없음으로 분류했습니다.</p>
+      <div class="cards">
+        <div><h3>1 · 수집</h3><p>제품 30개 × 최대 250건. 피부타입 5종 × 40건 + 전체 50건을 유용순으로 수집하고 중복을 제거했습니다.</p></div>
+        <div><h3>2 · 분류</h3><p>8개 기준별 긍정 · 부정 · 없음. 분모는 전체 리뷰가 아니라 그 기준을 언급한 리뷰 수입니다.</p></div>
+        <div><h3>3 · 활용</h3><p>언급이 5건 미만이면 표시하지 않고, 피부타입별 가중치를 더해 추천 점수를 계산합니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c2-pl">
+      <p class="label">예외 정책 <span>· 기획 산출물</span></p>
+      <h2>어떤 상황에서도 서비스가 침묵하지 않게</h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">상황</th><th scope="col">사용자에게 보이는 메시지</th><th scope="col">시스템 동작</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">피부타입 미지정</th><td>"먼저 피부타입을 알려주시면 더 정확하게 추천드려요" + 빠른 응답 칩 4개</td><td>되묻기 노드 진입 · 슬롯 저장</td></tr>
+          <tr><th scope="row">검색 결과 부족</th><td>"더 정확한 결과를 찾고 있어요…"</td><td>질문 재작성 · 최대 3회 · 조건 단계적 완화</td></tr>
+          <tr><th scope="row">3회 후에도 실패</th><td>"정확히 일치하는 제품은 없지만, 비슷한 조건의 인기 제품을 보여드릴게요"</td><td>신뢰도 기준 차순위 후보 반환</td></tr>
+          <tr><th scope="row">반복 추천</th><td>"이번엔 다른 스타일의 제품도 함께 보여드릴게요"</td><td>다양성 패널티 · 중복 제외</td></tr>
+          <tr><th scope="row">시스템 오류</th><td>"잠시 후 다시 시도해주세요" + 재시도 버튼</td><td>기술 용어 노출 금지 · 직전 입력 보존</td></tr>
+        </tbody>
+      </table></div>
+      <div class="stack"><span>LangGraph</span><span>PostgreSQL</span><span>pgvector</span><span>GPT-4o-mini</span><span>ko-sroberta</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#meetup">다음 · 우리 어디서 봐? →</a></div></div>
+</article>
+
+<!-- ========== CASE: 우리 어디서 봐 ========== -->
+<article id="v-meetup" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="c3-sc">화면</button><button type="button" data-jump="c3-pb">문제</button><button type="button" data-jump="c3-ft">판단</button><button type="button" data-jump="c3-rd">재설계</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">우리 어디서 봐? · 개인 프로젝트 · 2026</p>
+      <h1>모두에게 공평한 모임 장소 정하기</h1>
+      <p class="lede">앱 설치 없이 텔레그램 대화창에서 출발지와 하고 싶은 활동을 모으고, 참여자별 이동 시간 차이가 가장 작은 장소를 날씨까지 고려해 추천하는 봇입니다.</p>
+    </header>
+    <dl class="facts">
+      <div><dt>역할</dt><dd>기획 · 구현</dd></div>
+      <div><dt>기간</dt><dd>2026.01</dd></div>
+      <div><dt>팀</dt><dd>개인</dd></div>
+      <div><dt>형태</dt><dd>텔레그램 봇 + 웹앱</dd></div>
+    </dl>
+
+    <section class="sec" id="c3-sc">
+      <p class="label">화면 <span>· 실제 시연 화면</span></p>
+      <h2>버튼만 누르면 끝나는 4단계</h2>
+      <div class="gallery phone">
+        <figure><img src="media/meet-1-menu.jpg" alt="봇 메뉴: 내 출발지 등록, 관심 활동 등록, 장소 추천 버튼" loading="lazy"><b>1 · 메뉴</b><figcaption>봇을 초대하면 버튼이 바로 뜹니다</figcaption></figure>
+        <figure><img src="media/meet-2-address.jpg" alt="카카오 주소 검색 웹앱" loading="lazy"><b>2 · 출발지</b><figcaption>카카오 주소 검색으로 정확히 입력</figcaption></figure>
+        <figure><img src="media/meet-3-activity.jpg" alt="관심 활동을 묻고 노래방이라고 답하는 대화" loading="lazy"><b>3 · 관심 활동</b><figcaption>하고 싶은 활동을 대화로 입력</figcaption></figure>
+        <figure><img src="media/meet-4-date.jpg" alt="약속 일정 접수 후 AI가 장소를 분석하는 메시지" loading="lazy"><b>4 · 장소 추천</b><figcaption>날짜를 고르면 날씨까지 확인</figcaption></figure>
+        <figure><img src="media/meet-5-result.jpg" alt="추천 장소 2곳과 참여자별 이동 시간 결과" loading="lazy"><b>결과</b><figcaption>추천 2곳 + 참여자별 이동 시간</figcaption></figure>
+      </div>
+      <p class="note">참여자 이름은 가렸습니다.</p>
+    </section>
+
+    <section class="sec" id="c3-pb">
+      <p class="label">문제</p>
+      <h2>즐거워야 할 만남, 장소 정하기부터 지친다</h2>
+      <div class="cards">
+        <div><h3>거리만 보는 중간 지점</h3><p>지도상 가운데여도 실제로는 만나기 어려운 곳이 추천되고, 사람마다 이동 시간이 크게 다릅니다.</p></div>
+        <div><h3>앱을 계속 오가는 피로</h3><p>대화는 메신저에서, 검색은 지도 앱에서, 날씨는 또 다른 앱에서 확인해야 합니다.</p></div>
+        <div><h3>전용 앱의 설치 장벽</h3><p>모두가 앱을 설치하지 않으니, 결국 한 명이 주소를 일일이 받아 혼자 검색합니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c3-ft">
+      <p class="label">판단</p>
+      <h2>이동 시간이 비슷한 곳, 그리고 날씨에 맞는 곳</h2>
+      <ul>
+        <li>참여자 전원의 출발지로 대중교통 이동 시간 편차가 가장 작은 지점을 계산합니다.</li>
+        <li>정보가 많은 지역만 추천하는 편향은 이동 시간 편차 조건으로 보정했습니다.</li>
+        <li>비 · 눈 · 폭염 예보가 있으면 실내 장소를 먼저 찾습니다.</li>
+        <li>"주차되고 조용한 룸술집" 같은 자연어 조건은 프롬프트로 구조화된 조건으로 바꿉니다.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="c3-rd">
+      <p class="label">재설계</p>
+      <h2>명령어 방식은 만든 사람만 쓸 수 있었다</h2>
+      <p>처음에는 오작동을 줄이려고 "/출발지 [주소]" 같은 명령어 방식으로 만들었습니다. 직접 테스트해 보니 두 가지 문제가 나왔습니다.</p>
+      <div class="cards">
+        <div><h3>지명 중의성</h3><p>"성남"을 입력했는데 "수원" 위치로 인식했습니다. → 카카오 주소 검색 웹앱으로 정확한 주소를 고르게 했습니다.</p></div>
+        <div><h3>날짜 형식 불일치</h3><p>"2025.11.11", "11-11"처럼 사람마다 날짜를 다르게 적었습니다. → 캘린더에서 날짜를 고르게 했습니다.</p></div>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">항목</th><th scope="col">처음</th><th scope="col" class="hl">재설계</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">입력 방식</th><td>텍스트 명령어</td><td class="hl">인라인 버튼 + 웹앱</td></tr>
+          <tr><th scope="row">데이터 보관</th><td>대화가 지나가면 사라짐</td><td class="hl">DB 기반 세션 (Airtable)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="stack"><span>n8n</span><span>Telegram Bot</span><span>Kakao API</span><span>Airtable</span><span>GPT-4</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#chatbot">처음으로 · 찾아드림 →</a></div></div>
+</article>
+
+<script>
+(function () {
+  var views = ['chatbot', 'sunscreen', 'meetup'];
+  function show() {
+    var h = location.hash.replace('#', '');
+    var target = views.indexOf(h) >= 0 ? h : 'home';
+    document.querySelectorAll('[data-view]').forEach(function (el) {
+      el.hidden = el.id !== 'v-' + target;
+      if (el.hidden) el.querySelectorAll('video').forEach(function (v) { v.pause(); });
+    });
+    var hero = document.querySelector('#v-' + target + ' .stage video');
+    if (hero && !matchMedia('(prefers-reduced-motion: reduce)').matches) { var p = hero.play(); if (p && p.catch) p.catch(function () {}); }
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+  document.querySelectorAll('[data-jump]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.getAttribute('data-jump'));
+      if (t) t.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      b.parentNode.querySelectorAll('[data-jump]').forEach(function (x) { x.classList.toggle('on', x === b); });
+    });
+  });
+})();
+</script>
+</body>
+</html>
