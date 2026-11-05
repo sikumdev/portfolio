@@ -13,6 +13,7 @@
   --pill: #eff0f2; --accent: #2f4f8f; --accent-soft: #edf1f8;
   --t-blue: #e6ecf5; --t-blue-l: #d3dceb; --t-sand: #f3ece6; --t-sand-l: #e6dacf; --t-sand-ink: #8f5f49;
   --t-green: #e6efe9; --t-green-l: #d0e0d5; --t-green-ink: #3a7250; --t-gray: #eceef1; --t-gray-l: #dcdfe4;
+  --t-pink: #f6e8ec; --t-pink-l: #ead3da;
   --font: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   color-scheme: light;
 }
@@ -61,7 +62,41 @@ h1, h2, h3 { text-wrap: balance; font-weight: 600; margin: 0; }
 .phones img { width: 30%; height: auto; align-self: flex-start; border-radius: 14px 14px 0 0; border: 1px solid var(--t-green-l); border-bottom: 0; }
 .screen { flex: 1; background: var(--surface); border-radius: 12px 12px 0 0; border: 1px solid var(--t-sand-l); border-bottom: 0; padding: 20px; display: flex; flex-direction: column; gap: 11px; font-size: 12.5px; color: var(--body); min-width: 0; }
 .screen .meta { font-size: 11.5px; color: var(--muted); }
-.blue { background: var(--t-blue); } .sand { background: var(--t-sand); } .green { background: var(--t-green); }
+.blue { background: var(--t-blue); } .sand { background: var(--t-sand); } .green { background: var(--t-green); } .pink { background: var(--t-pink); }
+.scanner { flex: 1; display: flex; justify-content: center; align-items: flex-start; gap: 7%; min-width: 0; }
+.phone { width: 38%; max-width: 230px; background: #1d1f24; border-radius: 22px 22px 0 0; padding: 9px 9px 0; }
+.phone .scr { background: #2a2d33; border-radius: 15px 15px 0 0; aspect-ratio: 9 / 14; position: relative; display: grid; place-items: center; overflow: hidden; }
+.phone .scr img { width: 62%; border-radius: 6px; }
+.phone .scr::before { content: ""; position: absolute; inset: 16% 12%; border: 2px solid #f08bb0; border-radius: 10px; }
+.phone .scr .line { position: absolute; left: 14%; right: 14%; top: 50%; height: 2px; background: #f08bb0; box-shadow: 0 0 8px #f08bb0; }
+.done { align-self: center; background: var(--surface); border: 1px solid var(--t-pink-l); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: var(--body); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.done b { color: var(--ink); font-size: 15px; }
+.done .ok { color: #2f7a4f; font-weight: 600; }
+.avs { display: flex; }
+.avs i { width: 24px; height: 24px; border-radius: 50%; background: #f3c7d6; border: 2px solid var(--surface); margin-left: -6px; display: grid; place-items: center; font-style: normal; font-size: 10px; color: #8a2c50; font-weight: 600; }
+.avs i:first-child { margin-left: 0; }
+.stage .thumb { aspect-ratio: 16 / 7; padding: 4% 9% 0; border-radius: 14px; }
+.stage .phone { max-width: 200px; }
+.stage .done { font-size: 14px; padding: 18px 20px; } .stage .done b { font-size: 17px; }
+/* 앱 구성도 */
+.map { margin-top: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; overflow-x: auto; }
+.map svg { display: block; width: 100%; min-width: 640px; height: auto; font-family: var(--font); }
+.map .n rect { fill: var(--surface); stroke: var(--t-gray-l); stroke-width: 1.2; }
+.map .n text { fill: var(--ink); font-size: 14px; font-weight: 500; text-anchor: middle; dominant-baseline: central; }
+.map .n.root rect { fill: #e57b9f; stroke: #e57b9f; } .map .n.root text { fill: #fff; font-weight: 600; }
+.map .n.hub rect { fill: var(--t-pink); stroke: var(--t-pink-l); }
+.map .n.key rect { fill: #fbe3ec; stroke: #e57b9f; stroke-width: 1.6; } .map .n.key text { font-weight: 600; color: #8a2c50; fill: #8a2c50; }
+.map .n.shop rect { fill: var(--t-green); stroke: var(--t-green-l); }
+.map .n.ghost rect { fill: var(--surface); stroke-dasharray: 4 3; } .map .n.ghost text { fill: var(--muted); }
+.map .e { fill: none; stroke: #b9bec7; stroke-width: 1.4; }
+.map .e.d { stroke-dasharray: 4 4; }
+.map .e.p { stroke: #e57b9f; stroke-width: 1.8; }
+.map .lane { font-size: 12px; font-weight: 600; fill: var(--muted); letter-spacing: .4px; }
+.map .lane.p { fill: #b0466a; } .map .lane.g { fill: var(--t-green-ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 18px; height: 0; border-top: 2px solid #e57b9f; display: inline-block; }
+.legend i.d { border-top: 2px dashed #b9bec7; } .legend i.s { border-top-color: #b9bec7; }
 .bars { display: grid; grid-template-columns: 72px 1fr; gap: 9px 10px; align-items: center; }
 .bar { height: 6px; border-radius: 3px; background: var(--t-sand); }
 .bar i { display: block; height: 100%; border-radius: 3px; background: var(--t-sand-ink); }
@@ -152,6 +187,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .b ol { margin: 6px 0 0; padding-left: 20px; }
 .b li { font-size: 14px; line-height: 1.7; }
 
+/* QR캡처체리 리더기 분기 */
+.flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.flow > div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; min-width: 0; }
+.flow .step { font-size: 12px; font-weight: 600; color: var(--accent); }
+.flow h3 { font-size: 16px; margin: 4px 0 8px; }
+.flow p { font-size: 15px; line-height: 1.7; }
+.flow code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--pill); border-radius: 5px; padding: 1px 6px; color: var(--ink); word-break: break-all; }
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; align-items: start; }
+.duo figure { margin: 0; min-width: 0; }
+.duo img { width: 100%; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); }
+.duo b { display: block; margin-top: 10px; font-size: 15px; }
+.duo figcaption { margin-top: 2px; font-size: 14px; color: var(--muted); }
+.gallery.qr { grid-template-columns: 1.1fr 1fr 1fr; align-items: start; }
+.duo.db { grid-template-columns: minmax(0, 1fr) minmax(0, .56fr); max-width: 760px; }
+
 .casefoot { padding-block: 32px 72px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 15px; }
 .casefoot a { text-decoration: none; font-weight: 500; }
 .casefoot a:hover { text-decoration: underline; }
@@ -159,7 +209,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 760px) {
   .hero { padding-block: 44px 40px; }
   .item.feature .thumb { aspect-ratio: 4 / 3; padding: 7% 7% 0; }
-  .grid, .videos, .split { grid-template-columns: 1fr; }
+  .grid, .videos, .split, .flow, .duo { grid-template-columns: 1fr; }
+  .gallery.qr { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .duo.db { grid-template-columns: 1fr; }
+  .duo.db figure:last-child img { width: 56%; }
   .facts, .results, .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery.phone { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   footer.site { grid-template-columns: 1fr 1fr; }
@@ -229,11 +282,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </a>
       <div class="links"><a class="lk primary" href="#meetup">상세 보기 →</a></div>
     </div>
+
+    <div class="item">
+      <a class="card" href="#qrcheck">
+        <div class="thumb pink" role="img" aria-label="매장 스캐너가 대표자 QR을 읽고 GroupA 5명 체크인 완료를 표시하는 장면"><div class="scanner">
+          <div class="phone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
+          <div class="done"><span class="ok">✓ 체크인 완료</span><b>GroupA · 5명</b><div class="avs"><i>홍</i><i>a1</i><i>a2</i><i>a3</i><i>a4</i></div><span>2021-12-02 06:45</span></div>
+        </div></div>
+        <div class="cap"><b>한 번 찍으면 일행 전원이 체크인되는 QR<small>Android · Firebase · 기업연계 4인</small></b><span>QR캡처체리 · 2021</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#qrcheck">상세 보기 →</a></div>
+    </div>
   </section>
 
   <footer class="site">
     <div><b>김시연</b><p>IT 서비스 운영 · AX 기획</p></div>
-    <div><h3>Projects</h3><ul><li><a href="#chatbot">찾아드림</a></li><li><a href="#sunscreen">선크림 추천 RAG</a></li><li><a href="#meetup">우리 어디서 봐?</a></li></ul></div>
+    <div><h3>Projects</h3><ul><li><a href="#chatbot">찾아드림</a></li><li><a href="#sunscreen">선크림 추천 RAG</a></li><li><a href="#meetup">우리 어디서 봐?</a></li><li><a href="#qrcheck">QR캡처체리</a></li></ul></div>
     <div><h3>Contact</h3><ul><li>moonjungkim99@gmail.com</li></ul></div>
   </footer>
 </div>
@@ -505,12 +569,163 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <div class="stack"><span>n8n</span><span>Telegram Bot</span><span>Kakao API</span><span>Airtable</span><span>GPT-4</span></div>
     </section>
   </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#qrcheck">다음 · QR캡처체리 →</a></div></div>
+</article>
+
+<!-- ========== CASE: QR캡처체리 ========== -->
+<article id="v-qrcheck" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="c4-pb">문제</button><button type="button" data-jump="c4-dc">판단</button><button type="button" data-jump="c4-ft">기능</button><button type="button" data-jump="c4-sc">화면</button><button type="button" data-jump="c4-ds">설계</button><button type="button" data-jump="c4-rs">결과</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">QR캡처체리 · 컴퓨터소프트웨어공학과 기업연계 프로젝트 · 2021</p>
+      <h1>한 번 찍으면 일행 전원이 체크인되는 QR</h1>
+      <p class="lede">대표자 한 명의 QR에 일행을 묶어, 매장에서 한 번만 스캔하면 전원이 출입 명부에 기록되는 안드로이드 앱입니다.</p>
+    </header>
+    <figure class="stage pink" style="margin-inline:0">
+      <div class="thumb" style="padding-top:2%" role="img" aria-label="매장 스캐너가 대표자 QR을 읽고 GroupA 5명 체크인 완료를 표시하는 장면"><div class="scanner">
+          <div class="phone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
+          <div class="done"><span class="ok">✓ 체크인 완료</span><b>GroupA · 5명</b><div class="avs"><i>홍</i><i>a1</i><i>a2</i><i>a3</i><i>a4</i></div><span>2021-12-02 06:45</span></div>
+        </div></div>
+      <figcaption>재구성 이미지 · 매장 스캐너로 대표자 QR을 한 번 찍으면 그룹 멤버 5명이 함께 체크인됩니다. QR은 실제 앱에서 만든 GroupA 대표자 QR입니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>내 역할</dt><dd>앱 서브 기능 구현</dd></div>
+      <div><dt>기간</dt><dd>2021.08 – 12</dd></div>
+      <div><dt>팀</dt><dd>4인 (체리쥬빌레)</dd></div>
+      <div><dt>형태</dt><dd>Android 앱</dd></div>
+    </dl>
+
+    <section class="sec" id="c4-pb">
+      <p class="label">문제</p>
+      <h2>모임은 커졌는데, 체크인은 여전히 한 명씩</h2>
+      <p>2021년 말 위드 코로나 정책으로 5인 이상 집합금지가 완화됐지만, 건물에 들어갈 때 QR 체크인은 여전히 필수였습니다. 일행이 많을수록 입구에서 QR을 찍는 시간도 그만큼 늘어났습니다.</p>
+      <div class="cards">
+        <div><h3>입장 대기</h3><p>인원 수만큼 스캔을 반복해 줄이 길어진다</p></div>
+        <div><h3>명부 누락</h3><p>번거로우면 건너뛰고, 접촉자 추적이 어려워진다</p></div>
+        <div><h3>대리 체크인</h3><p>어린이 · 노인은 보호자가 대신 찍어야 한다</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="c4-dc">
+      <p class="label">판단</p>
+      <h2>기존 QR 체크인은 모두 개인 단위였다</h2>
+      <p>카카오톡과 네이버 QR 체크인을 분석했습니다. 둘 다 누구나 쓰는 앱 안에 있어 접근성이 좋고, 카카오톡은 흔들어 열기처럼 여는 동작도 쉽습니다. 하지만 한 사람이 한 번씩 찍는 구조는 같았습니다. 그래서 일행을 하나로 묶는 대표자 QR에 집중했습니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">기준</th><th scope="col">카카오톡 · 네이버 QR</th><th scope="col" class="hl">QR캡처체리</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">체크인 단위</th><td>개인</td><td class="hl">개인 + 그룹</td></tr>
+          <tr><th scope="row">일행 5명 입장 시 스캔</th><td>5번</td><td class="hl">1번</td></tr>
+          <tr><th scope="row">대신 체크인</th><td>각자 휴대폰 필요</td><td class="hl">대표자가 일괄 처리</td></tr>
+          <tr><th scope="row">함께 온 인원 확인</th><td>명부에서 따로 추정</td><td class="hl">같은 시각 · 번호로 기록</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="c4-ft">
+      <p class="label">주요 기능</p>
+      <h2>사용자는 그룹만 만들고, 매장은 한 번만 찍는다</h2>
+      <div class="cards">
+        <div><h3>회원가입 · 개인 QR</h3><p>이름 · 이메일 · 전화번호로 가입하면 개인 토큰이 발급되고, 버튼 하나로 개인 QR을 만듭니다.</p></div>
+        <div><h3>그룹 만들기</h3><p>그룹명을 정하고 멤버의 개인 QR을 찍어 인원을 추가합니다.</p></div>
+        <div><h3>대표자 QR</h3><p>그룹 멤버 전원의 정보가 담긴 QR을 하나 만듭니다.</p></div>
+        <div><h3>매장 스캐너</h3><p>로그인 없이 홈에서 스캐너를 열고, 개인 · 대표자 QR을 모두 인식해 방문자 명부에 기록합니다.</p></div>
+      </div>
+
+      <figure class="map" style="margin-inline:0" aria-label="앱 구성도">
+        <svg viewBox="0 0 940 300" role="img" aria-labelledby="qrmap-t">
+          <title id="qrmap-t">앱 구성도: Home에서 사용자는 로그인(회원가입) 후 개인 QR 코드 생성 또는 대표자 QR 코드(그룹명 작성, 그룹 페이지, 인원 추가하기, QR 코드 생성)로, 매장은 로그인 없이 QR Scanner로 QR을 인식해 방문자 명부에 기록한다</title>
+          <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#b9bec7"/></marker>
+          <marker id="ahp" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L8 4L0 8z" fill="#e57b9f"/></marker></defs>
+          <text class="lane p" x="340" y="34">사용자 · 로그인 후</text>
+          <text class="lane g" x="340" y="240">매장 · 로그인 없이</text>
+          <path class="e d" d="M170 220 H930"/>
+          <path class="e" d="M144 145 H162 V85 H178" marker-end="url(#ah)"/>
+          <path class="e" d="M162 145 V270 H178" marker-end="url(#ah)"/>
+          <path class="e d" d="M242 65 V42"/>
+          <path class="e" d="M304 85 H322 V60 H338" marker-end="url(#ah)"/>
+          <path class="e p" d="M322 85 V145 H338" marker-end="url(#ahp)"/>
+          <path class="e" d="M464 60 H498" marker-end="url(#ah)"/>
+          <path class="e p" d="M464 145 H498" marker-end="url(#ahp)"/>
+          <path class="e p" d="M624 145 H658" marker-end="url(#ahp)"/>
+          <path class="e d" d="M782 145 H792 V105 H798" marker-end="url(#ah)"/>
+          <path class="e p" d="M792 145 V185 H798" marker-end="url(#ahp)"/>
+          <path class="e" d="M304 270 H338" marker-end="url(#ah)"/>
+          <path class="e" d="M464 270 H498" marker-end="url(#ah)"/>
+          <g class="n root"><rect x="20" y="125" width="124" height="40" rx="10"/><text x="82.0" y="145">Home</text></g>
+          <g class="n ghost"><rect x="180" y="2" width="124" height="40" rx="10"/><text x="242.0" y="22">회원가입</text></g>
+          <g class="n hub"><rect x="180" y="65" width="124" height="40" rx="10"/><text x="242.0" y="85">Login</text></g>
+          <g class="n shop"><rect x="180" y="250" width="124" height="40" rx="10"/><text x="242.0" y="270">QR Scanner</text></g>
+          <g class="n hub"><rect x="340" y="40" width="124" height="40" rx="10"/><text x="402.0" y="60">개인 QR 코드</text></g>
+          <g class="n key"><rect x="340" y="125" width="124" height="40" rx="10"/><text x="402.0" y="145">대표자 QR 코드</text></g>
+          <g class="n "><rect x="500" y="40" width="124" height="40" rx="10"/><text x="562.0" y="60">QR 코드 생성</text></g>
+          <g class="n "><rect x="500" y="125" width="124" height="40" rx="10"/><text x="562.0" y="145">그룹명 작성</text></g>
+          <g class="n "><rect x="660" y="125" width="124" height="40" rx="10"/><text x="722.0" y="145">그룹 페이지</text></g>
+          <g class="n ghost"><rect x="800" y="85" width="130" height="40" rx="10"/><text x="865.0" y="105">인원 추가하기</text></g>
+          <g class="n key"><rect x="800" y="165" width="130" height="40" rx="10"/><text x="865.0" y="185">QR 코드 생성</text></g>
+          <g class="n "><rect x="340" y="250" width="124" height="40" rx="10"/><text x="402.0" y="270">QR 인식</text></g>
+          <g class="n shop"><rect x="500" y="250" width="140" height="40" rx="10"/><text x="570.0" y="270">방문자 명부 기록</text></g>
+        </svg>
+        <div class="legend"><span><i></i>대표자 QR 흐름</span><span><i class="s"></i>이동</span><span><i class="d"></i>선택 · 반복</span></div>
+      </figure>
+    </section>
+
+    <section class="sec" id="c4-sc">
+      <p class="label">화면 <span>· 실제 구현 화면 (테스트 계정)</span></p>
+      <h2>그룹 페이지 → 개인 QR → 대표자 QR</h2>
+      <div class="gallery qr">
+        <figure><img src="media/qr-group-page.jpg" alt="그룹 페이지: 멤버 5명 목록과 QR 보여주기 · 인원 추가하기 버튼" loading="lazy"><b>1 · 그룹 페이지</b><figcaption>멤버의 개인 QR을 찍어 그룹에 추가</figcaption></figure>
+        <figure><img src="media/qr-personal.jpg" alt="admin1 계정의 개인 QR코드" loading="lazy"><b>2 · 개인 QR</b><figcaption>개인 토큰만 담는다</figcaption></figure>
+        <figure><img src="media/qr-group.jpg" alt="GroupA 5명의 대표자 QR코드" loading="lazy"><b>3 · 대표자 QR</b><figcaption>GroupA 5명을 하나의 코드로</figcaption></figure>
+      </div>
+      <p class="note">화면의 이메일 · 전화번호는 모두 테스트 계정입니다.</p>
+    </section>
+
+    <section class="sec" id="c4-ds">
+      <p class="label">설계</p>
+      <h2>리더기 하나가 개인 QR과 대표자 QR을 구분해야 했다</h2>
+      <p>ZXing으로 만든 QR에는 문자열 하나만 담을 수 있습니다. 그래서 개인 정보 대신 Firebase가 회원가입 때 발급하는 개인 토큰을 넣고, 리더기가 토큰으로 DB에서 정보를 찾게 했습니다. 대표자 QR은 여러 명의 정보를 담아야 해서, 같은 리더기가 읽는 방식을 나눴습니다.</p>
+      <div class="flow">
+        <div><span class="step">1 · 구분</span><h3>키 문자 하나로 판별</h3><p>대표자 QR 데이터 앞에 키 문자를 넣었습니다. 키를 읽으면 대표자, 못 읽으면 개인으로 처리합니다.</p></div>
+        <div><span class="step">2 · 펼치기</span><h3>인원 수만큼 반복</h3><p>대표자 QR에는 <code>키 · 인원 수 · 그룹명 · 토큰 목록</code>을 담고, 인원 수만큼 돌며 멤버별 토큰을 꺼냅니다.</p></div>
+        <div><span class="step">3 · 기록</span><h3>시각-번호로 저장</h3><p>방문자 명부에 <code>…06:45:12-1</code>, <code>-2</code>처럼 저장해 몇 명이 함께 왔는지 한눈에 보입니다.</p></div>
+      </div>
+      <div class="duo db">
+        <figure><img src="media/qr-db-group.jpg" alt="Firebase Realtime Database의 GroupA 노드: 멤버 1~5의 idToken, 프로필, 이메일, 이름, 전화번호" loading="lazy"><b>그룹 DB</b><figcaption>그룹별로 멤버의 개인 토큰과 정보를 저장</figcaption></figure>
+        <figure><img src="media/qr-db-visitor.jpg" alt="Firebase Realtime Database의 Visitor 노드: 같은 시각 뒤에 -1부터 -5까지 번호가 붙은 방문 기록 5건" loading="lazy"><b>방문자 명부</b><figcaption>한 번 스캔으로 5명이 같은 시각에 기록됨</figcaption></figure>
+      </div>
+      <h3 style="font-size:18px;margin:40px 0 10px">DB를 WAMP + PHP에서 Firebase로 바꿨다</h3>
+      <p>처음에는 WAMP로 DB를 만들고 PHP로 안드로이드와 연동했지만, 리더기로 들어온 데이터를 저장하고 불러오는 과정에서 오류가 반복됐습니다. 인증 · DB · 저장소를 한 번에 쓸 수 있는 Firebase로 옮겼습니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Firebase 모듈</th><th scope="col">쓴 곳</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Authentication</th><td>회원가입 · 로그인, 사용자마다 고유한 개인 토큰 발급</td></tr>
+          <tr><th scope="row">Realtime Database</th><td>사용자 정보 · 방문자 명부 · 대표자 QR용 그룹을 각각 저장</td></tr>
+          <tr><th scope="row">Storage</th><td>앱 UI 이미지 저장</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="c4-rs">
+      <p class="label">결과</p>
+      <h2>일행 5명을 스캔 한 번으로 기록</h2>
+      <div class="results">
+        <div><b>5번 → 1번</b><span>일행 5명 입장 시 스캔 횟수</span></div>
+        <div><b>2종</b><span>리더기 하나로 개인 · 대표자 QR 인식</span></div>
+        <div><b>약 4개월</b><span>기획 → 설계 → 개발 → 발표</span></div>
+      </div>
+      <p style="margin-top:24px">회원가입부터 개인 QR, 그룹 구성, 대표자 QR, 매장 스캐너, 방문자 명부 기록까지 하나의 흐름으로 동작하는 앱을 완성했습니다. 다음 과제로는 메뉴바로 앱 구조 정리, 회원가입 시 FCM 번호 인증, 모인 방문 데이터 활용을 남겼습니다.</p>
+      <div class="stack"><span>Java</span><span>Android Studio</span><span>Firebase Auth</span><span>Realtime Database</span><span>ZXing</span><span>Figma</span></div>
+    </section>
+  </div>
   <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#chatbot">처음으로 · 찾아드림 →</a></div></div>
 </article>
 
 <script>
 (function () {
-  var views = ['chatbot', 'sunscreen', 'meetup'];
+  var views = ['chatbot', 'sunscreen', 'meetup', 'qrcheck'];
   function show() {
     var h = location.hash.replace('#', '');
     var target = views.indexOf(h) >= 0 ? h : 'home';
