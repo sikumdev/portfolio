@@ -64,19 +64,19 @@ h1, h2, h3 { text-wrap: balance; font-weight: 600; margin: 0; }
 .screen .meta { font-size: 11.5px; color: var(--muted); }
 .blue { background: var(--t-blue); } .sand { background: var(--t-sand); } .green { background: var(--t-green); } .pink { background: var(--t-pink); }
 .scanner { flex: 1; display: flex; justify-content: center; align-items: flex-start; gap: 7%; min-width: 0; }
-.phone { width: 38%; max-width: 230px; background: #1d1f24; border-radius: 22px 22px 0 0; padding: 9px 9px 0; }
-.phone .scr { background: #2a2d33; border-radius: 15px 15px 0 0; aspect-ratio: 9 / 14; position: relative; display: grid; place-items: center; overflow: hidden; }
-.phone .scr img { width: 62%; border-radius: 6px; }
-.phone .scr::before { content: ""; position: absolute; inset: 16% 12%; border: 2px solid #f08bb0; border-radius: 10px; }
-.phone .scr .line { position: absolute; left: 14%; right: 14%; top: 50%; height: 2px; background: #f08bb0; box-shadow: 0 0 8px #f08bb0; }
+.qphone { width: 38%; max-width: 230px; background: #1d1f24; border-radius: 22px 22px 0 0; padding: 9px 9px 0; }
+.qphone .scr { background: #2a2d33; border-radius: 15px 15px 0 0; aspect-ratio: 9 / 14; position: relative; display: grid; place-items: center; overflow: hidden; }
+.qphone .scr img { width: 62%; border-radius: 6px; }
+.qphone .scr::before { content: ""; position: absolute; inset: 16% 12%; border: 2px solid #f08bb0; border-radius: 10px; }
+.qphone .scr .line { position: absolute; left: 14%; right: 14%; top: 50%; height: 2px; background: #f08bb0; box-shadow: 0 0 8px #f08bb0; }
 .done { align-self: center; background: var(--surface); border: 1px solid var(--t-pink-l); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: var(--body); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .done b { color: var(--ink); font-size: 15px; }
 .done .ok { color: #2f7a4f; font-weight: 600; }
 .avs { display: flex; }
 .avs i { width: 24px; height: 24px; border-radius: 50%; background: #f3c7d6; border: 2px solid var(--surface); margin-left: -6px; display: grid; place-items: center; font-style: normal; font-size: 10px; color: #8a2c50; font-weight: 600; }
 .avs i:first-child { margin-left: 0; }
-.stage .thumb { aspect-ratio: 16 / 7; padding: 4% 9% 0; border-radius: 14px; }
-.stage .phone { max-width: 200px; }
+.stage .thumb { aspect-ratio: auto; padding: 24px 9% 0; border-radius: 14px; }
+.stage .qphone { max-width: 200px; }
 .stage .done { font-size: 14px; padding: 18px 20px; } .stage .done b { font-size: 17px; }
 /* 앱 구성도 */
 .map { margin-top: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; overflow-x: auto; }
@@ -286,7 +286,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="item">
       <a class="card" href="#qrcheck">
         <div class="thumb pink" role="img" aria-label="매장 스캐너가 대표자 QR을 읽고 GroupA 5명 체크인 완료를 표시하는 장면"><div class="scanner">
-          <div class="phone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
+          <div class="qphone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
           <div class="done"><span class="ok">✓ 체크인 완료</span><b>GroupA · 5명</b><div class="avs"><i>홍</i><i>a1</i><i>a2</i><i>a3</i><i>a4</i></div><span>2021-12-02 06:45</span></div>
         </div></div>
         <div class="cap"><b>한 번 찍으면 일행 전원이 체크인되는 QR<small>Android · Firebase · 기업연계 4인</small></b><span>QR캡처체리 · 2021</span></div>
@@ -586,7 +586,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </header>
     <figure class="stage pink" style="margin-inline:0">
       <div class="thumb" style="padding-top:2%" role="img" aria-label="매장 스캐너가 대표자 QR을 읽고 GroupA 5명 체크인 완료를 표시하는 장면"><div class="scanner">
-          <div class="phone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
+          <div class="qphone"><div class="scr"><img src="media/qr-group.jpg" alt=""><span class="line"></span></div></div>
           <div class="done"><span class="ok">✓ 체크인 완료</span><b>GroupA · 5명</b><div class="avs"><i>홍</i><i>a1</i><i>a2</i><i>a3</i><i>a4</i></div><span>2021-12-02 06:45</span></div>
         </div></div>
       <figcaption>재구성 이미지 · 매장 스캐너로 대표자 QR을 한 번 찍으면 그룹 멤버 5명이 함께 체크인됩니다. QR은 실제 앱에서 만든 GroupA 대표자 QR입니다.</figcaption>
