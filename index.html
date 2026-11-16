@@ -101,7 +101,7 @@ h1, h2, h3 { text-wrap: balance; font-weight: 600; margin: 0; }
 .bar { height: 6px; border-radius: 3px; background: var(--t-sand); }
 .bar i { display: block; height: 100%; border-radius: 3px; background: var(--t-sand-ink); }
 
-footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 44px 64px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; font-size: 14px; }
+footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 44px 64px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; font-size: 14px; }
 footer.site b { font-size: 18px; font-weight: 600; }
 footer.site p { margin: 6px 0 0; color: var(--muted); }
 footer.site h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
@@ -226,6 +226,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .cap { flex-direction: column; gap: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { .thumb { transition: none; } .card:hover .thumb { transform: none; } }
+
+/* 업무 자동화 케이스 추가분 */
+.gray { background: var(--t-gray); }
+.stage img { width: 100%; border-radius: 10px; border: 1px solid var(--t-blue-l); background: var(--surface); }
+.shot.dark { background: #1f2126; border-color: #2c2f36; }
+.shot.dark img { object-fit: contain; object-position: center; }
+.pre { margin-top: 24px; background: #1d1f24; color: #e7e9ee; border-radius: 14px; padding: 20px 22px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.7; overflow-x: auto; white-space: pre; }
+.pre i { font-style: normal; color: #8fd1c6; } .pre em { font-style: normal; color: #8a8f98; }
+.rules { max-width: 46em; margin-top: 16px; display: grid; gap: 8px; }
+.rules div { display: grid; grid-template-columns: 100px 1fr; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; font-size: 15px; color: var(--body); }
+.rules div b { color: var(--ink); font-weight: 600; }
+.screen .list { display: grid; gap: 6px; }
+.screen .list span { display: grid; grid-template-columns: 14px 1fr; gap: 6px; align-items: start; }
+.screen .list i { width: 8px; height: 8px; border-radius: 2px; margin-top: 6px; background: var(--t-gray-l); }
+.screen .list i.a { background: var(--accent); }
 </style>
 </head>
 <body>
@@ -239,9 +254,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   </header>
 
   <section class="hero">
-    <p class="kicker"><b>김시연</b> · IT 서비스 운영 · AX 기획</p>
+    <p class="kicker"><b>김시연</b> · IT 서비스 운영 · AX 기획 · 업무 자동화</p>
     <h1>반복되는 문의에서 문제를 찾고,<br>AI로 풀 지점을 설계합니다.</h1>
-    <p class="sub">한국감정평가사협회 IT정보센터에서 1년 6개월간 회원 문의와 시스템을 운영했고, 지금은 RAG · 에이전트 기반 서비스를 기획합니다.</p>
+    <p class="sub">한국감정평가사협회 IT정보센터에서 1년 6개월간 회원 문의와 시스템을 운영했고, 지금은 RAG · 에이전트 기반 서비스를 기획하며 n8n으로 알림 · 리포트 · 데이터 수집 자동화를 직접 만듭니다.</p>
   </section>
 
   <h2 class="sectitle" id="projects-title">Projects</h2>
@@ -295,9 +310,56 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
+
+  <h2 class="sectitle" id="automation-title" style="margin-top:88px">Automation <span style="font-size:16px;color:var(--muted);font-weight:500;margin-left:8px">n8n · AI 에이전트</span></h2>
+  <section class="grid" aria-labelledby="automation-title">
+    <div class="item feature">
+      <a class="card" href="#weather">
+        <div class="thumb blue"><div class="shot dark"><img src="media/auto-weather.jpg" alt="n8n 캔버스: Weather Agent와 Calendar Agent가 메모리를 공유하며 Open-Meteo와 Google Calendar 툴을 호출하는 워크플로우"></div></div>
+        <div class="cap"><b>날씨를 보고 일정을 잡는 캘린더 에이전트<small>n8n · 멀티 에이전트 · Google Calendar</small></b><span>Weather-Aware Calendar Agent · 2025</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#weather">상세 보기 →</a><a class="lk" href="#playbook">자동화 판단 기준 →</a></div>
+    </div>
+
+    <div class="item">
+      <a class="card" href="#news">
+        <div class="thumb gray"><div class="shot dark"><img src="media/auto-news.jpg" alt="n8n 캔버스: Firecrawl 추출 → 본문 수집 → 요약 → Slack 전송 워크플로우"></div></div>
+        <div class="cap"><b>IT 뉴스를 모아 3줄 요약으로 Slack에 보내는 리포트<small>n8n · 스크래핑 · Slack 리포트</small></b><span>뉴스 요약 리포트 · 2025</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#news">상세 보기 →</a></div>
+    </div>
+
+    <div class="item">
+      <a class="card" href="#sqlagent">
+        <div class="thumb sand"><div class="shot dark"><img src="media/auto-sql.jpg" alt="n8n 캔버스: SQL 생성 Agent → Structured Output → Switch 분기 → SQL 실행 → 리포트 생성"></div></div>
+        <div class="cap"><b>질문하면 SQL을 만들고, 못 하면 이유를 말하는 리포트 에이전트<small>n8n · PostgreSQL · Structured Output</small></b><span>자연어 → SQL 리포트 · 2026</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#sqlagent">상세 보기 →</a></div>
+    </div>
+
+    <div class="item">
+      <a class="card" href="#playbook">
+        <div class="thumb green" aria-hidden="true"><div class="screen">
+          <div class="meta">자동화 판단 기준 · 체크리스트</div>
+          <div style="font-weight:600;color:var(--ink)">이 업무, 규칙으로? 에이전트로?</div>
+          <div class="list">
+            <span><i></i>순서가 고정되고 결과가 같아야 한다 → 규칙</span>
+            <span><i></i>실패하면 되돌릴 수 없다 → 규칙</span>
+            <span><i class="a"></i>자연어를 해석해 툴을 골라야 한다 → 에이전트</span>
+            <span><i class="a"></i>요약 · 분류 · 판단이 필요하다 → 에이전트</span>
+          </div>
+          <div class="meta">실행은 노드가, 판단만 에이전트가 →</div>
+        </div></div>
+        <div class="cap"><b>어떤 업무를 규칙으로, 어떤 업무를 에이전트로 풀 것인가<small>n8n 워크플로우 50여 개에서 정리</small></b><span>자동화 판단 기준</span></div>
+      </a>
+      <div class="links"><a class="lk primary" href="#playbook">상세 보기 →</a></div>
+    </div>
+  </section>
+
   <footer class="site">
-    <div><b>김시연</b><p>IT 서비스 운영 · AX 기획</p></div>
+    <div><b>김시연</b><p>IT 서비스 운영 · AX 기획 · 업무 자동화</p></div>
     <div><h3>Projects</h3><ul><li><a href="#chatbot">찾아드림</a></li><li><a href="#sunscreen">선크림 추천 RAG</a></li><li><a href="#meetup">우리 어디서 봐?</a></li><li><a href="#qrcheck">QR캡처체리</a></li></ul></div>
+    <div><h3>Automation</h3><ul><li><a href="#weather">캘린더 에이전트</a></li><li><a href="#news">뉴스 요약 리포트</a></li><li><a href="#sqlagent">SQL 리포트 에이전트</a></li><li><a href="#playbook">자동화 판단 기준</a></li></ul></div>
     <div><h3>Contact</h3><ul><li>moonjungkim99@gmail.com</li></ul></div>
   </footer>
 </div>
@@ -723,9 +785,343 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#chatbot">처음으로 · 찾아드림 →</a></div></div>
 </article>
 
+
+<!-- ========== CASE: 캘린더 에이전트 ========== -->
+<article id="v-weather" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="a1-pb">문제</button><button type="button" data-jump="a1-dc">판단</button><button type="button" data-jump="a1-ds">설계</button><button type="button" data-jump="a1-rs">결과</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">Weather-Aware Calendar Agent · n8n · 개인 실습 · 2025.12</p>
+      <h1>날씨를 보고 일정을 잡는 캘린더 에이전트</h1>
+      <p class="lede">"다음주 화요일 낮 2시에 비가 오지 않으면 양산 챙기기 일정 추가해줘." 한 문장에서 날짜를 확정하고, 날씨 조건을 확인한 뒤, 기존 일정과 겹치지 않을 때만 Google Calendar에 일정을 만드는 n8n 워크플로우입니다.</p>
+    </header>
+    <figure class="stage blue" style="margin-inline:0">
+      <img src="media/auto-weather.jpg" alt="n8n 캔버스: Chat Trigger → Weather Agent(Hourly/Daily tool) → Calendar Agent(Get many / Get / Create / Update / Delete), Simple Memory 공유">
+      <figcaption>n8n 캔버스 · Weather Agent와 Calendar Agent가 메모리를 공유하고, 각자 자기 툴만 가집니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>역할</dt><dd>설계 · 프롬프트 · 구현</dd></div>
+      <div><dt>기간</dt><dd>2025.12</dd></div>
+      <div><dt>형태</dt><dd>n8n 멀티 에이전트</dd></div>
+      <div><dt>연동</dt><dd>Open-Meteo · Google Calendar · Slack</dd></div>
+    </dl>
+
+    <section class="sec" id="a1-pb">
+      <p class="label">문제</p>
+      <h2>날씨를 보고 일정을 잡는 일은 앱 두 개를 오가는 일이다</h2>
+      <p>야외 일정은 날씨 앱에서 확인하고, 캘린더에서 빈 시간을 찾고, 다시 돌아와 등록해야 합니다. 요청은 한 문장인데 사람이 세 번 판단합니다.</p>
+      <div class="cards">
+        <div><h3>날짜 해석</h3><p>"다음주 화요일"이 며칠인지는 오늘이 언제냐에 따라 다릅니다.</p></div>
+        <div><h3>조건 판단</h3><p>그 시각 강수확률이 조건을 만족하는지 확인해야 합니다.</p></div>
+        <div><h3>충돌 검사</h3><p>이미 일정이 있으면 만들면 안 됩니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a1-dc">
+      <p class="label">판단</p>
+      <h2>에이전트 하나에 다 맡기지 않고, 날씨와 캘린더를 분리했다</h2>
+      <p>처음엔 에이전트 하나에 날씨 툴과 캘린더 툴을 모두 붙이는 게 간단해 보였습니다. 그러나 날씨 판단 규칙과 캘린더 충돌 규칙이 한 프롬프트에 섞이면 프롬프트가 비대해지고, 날씨 조건이 없는 단순 일정 요청에도 날씨 API를 호출하는 낭비가 생깁니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">에이전트</th><th scope="col">하는 일</th><th scope="col">절대 하지 않는 일</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Weather Agent</th><td>날짜를 YYYY-MM-DD로 확정 · 날씨 조건 유무 판단 · 필요할 때만 Open-Meteo 호출 · 조건 충족 여부를 JSON으로 출력</td><td>일정 생성, 캘린더 규칙 처리</td></tr>
+          <tr><th scope="row">Calendar Agent</th><td>Weather Agent 결과를 받아 Google Calendar 조회 · 생성 · 수정 · 삭제 · 충돌 검사</td><td>날씨 추론 (사용자가 날씨를 언급해도 직접 판단하지 않음)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">역할을 나누자 날씨 조건이 없는 "다음주 일정 알려줘"는 날씨 API를 거치지 않고 Calendar Agent만 동작합니다. 조건부 API 호출이 프롬프트가 아니라 구조로 보장됩니다.</p>
+    </section>
+
+    <section class="sec" id="a1-ds">
+      <p class="label">설계</p>
+      <h2>판단 결과는 JSON으로, 충돌 검사는 순서가 고정된 규칙으로</h2>
+      <div class="pre">[사용자]  "다음주 화요일 14시 비 안 오면 양산 일정 추가"
+   ↓
+[Weather Agent]
+   · 날짜 확정 → 2025-12-30 14:00
+   · 조건 있음 → <i>Hourly Tool</i> (precipitation_probability, apparent_temperature)
+   · 출력 <em>{ "target_date":"2025-12-30", "target_time":"14:00",
+            "weather_summary":"강수확률 10%", "condition_ok": true }</em>
+   ↓ (Simple Memory 공유)
+[Calendar Agent]
+   1) <i>get many events</i>   해당 날짜·시간대 범위 조회
+   2) <i>get an event</i>      겹칠 후보가 있으면 상세 확인
+   3) 1분이라도 겹치면 → "일정이 겹칩니다" 출력 후 중단
+   4) 안 겹치면      → <i>create an event</i>
+   ↓
+"2025-12-30 14:00~15:00 양산 챙기기"</div>
+      <div class="flow">
+        <div><span class="step">1 · 출력 형식 강제</span><h3>Weather Agent는 JSON만</h3><p>설명 없이 <code>condition_ok</code>를 포함한 JSON만 출력합니다. Calendar Agent가 그 값만 보고 분기할 수 있어야 하기 때문입니다.</p></div>
+        <div><span class="step">2 · 상대 날짜 규칙 고정</span><h3>"다음주"를 수식으로</h3><p><code>this_monday</code> = 오늘이 속한 주의 월요일, <code>next_monday</code> = +7일, 다음주 = [next_monday, +7일). 모델 해석에 맡기면 매번 달라졌습니다.</p></div>
+        <div><span class="step">3 · TODAY 주입</span><h3>"오늘"의 기준을 넣는다</h3><p><code>$now.setZone('Asia/Seoul')</code>를 시스템 프롬프트에 넣었습니다. 이전 버전에서 "오늘부터 1주 전 일정"이 조회되지 않았던 원인이 "오늘"의 기준이 없어서였습니다.</p></div>
+      </div>
+      <div class="cards">
+        <div><h3>툴 결과로만 답하기</h3><p>캘린더 요청은 추측하지 않고 반드시 툴 호출 결과로만 답하며, 실패 시 "캘린더 조회/처리에 실패했습니다" 한 줄만 출력합니다.</p></div>
+        <div><h3>입력 경로 확장</h3><p>채팅 트리거 외에 Slack 슬래시 커맨드 → Webhook 노드로도 진입합니다. 로컬 n8n은 외부에서 접근할 수 없어 ngrok으로 포워딩했습니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a1-rs">
+      <p class="label">결과</p>
+      <h2>요청 유형에 따라 필요한 에이전트만 움직인다</h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">요청</th><th scope="col">Weather Agent</th><th scope="col">Calendar Agent</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">"다음주 날씨 알려줘"</th><td class="hl">Daily Tool로 일자별 요약</td><td>호출 안 함</td></tr>
+          <tr><th scope="row">"다음주 일정 모두 알려줘"</th><td>조건 없음 → API 호출 없이 통과</td><td class="hl">get many events → 일정 리스트</td></tr>
+          <tr><th scope="row">"화요일 14시 비 안 오면 일정 추가"</th><td class="hl">Hourly Tool → condition_ok</td><td class="hl">충족 시 충돌 검사 후 Create · 불충족 시 중단</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">어려웠던 점은 로직보다 프롬프트였습니다. "다음주"의 정의를 어느 에이전트에 둘지, "일정이 겹친다"를 어디까지 적어야 같은 기준으로 판단하는지를 여러 번 고쳤습니다. 규칙으로 적을 수 있는 것은 전부 규칙으로 적고, 모델에게는 해석만 남겼습니다.</p>
+      <div class="stack"><span>n8n</span><span>AI Agent (Tools)</span><span>OpenAI</span><span>Open-Meteo API</span><span>Google Calendar API</span><span>Simple Memory</span><span>Webhook · Slack Slash Command</span><span>ngrok</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#news">다음 · 뉴스 요약 리포트 →</a></div></div>
+</article>
+
+<!-- ========== CASE: 뉴스 요약 리포트 ========== -->
+<article id="v-news" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="a2-pb">문제</button><button type="button" data-jump="a2-dc">판단</button><button type="button" data-jump="a2-ds">설계</button><button type="button" data-jump="a2-rs">결과</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">뉴스 수집 · 요약 Slack 리포트 · n8n · 개인 실습 · 2025.12</p>
+      <h1>IT 뉴스를 모아 3줄 요약으로 Slack에 보내는 리포트</h1>
+      <p class="lede">네이버 IT 뉴스에서 기사 목록을 추출하고, 기사별 본문을 가져와 LLM이 3줄로 요약한 뒤, Slack Block 메시지로 채널에 보내는 11단계 워크플로우입니다. 리포트 · 알림 · 데이터 수집 자동화의 기본 패턴을 한 번에 담았습니다.</p>
+    </header>
+    <figure class="stage gray" style="margin-inline:0">
+      <img src="media/auto-news.jpg" alt="n8n 캔버스: Firecrawl Extract → Split Out → HTTP Request → HTML Extract → Edit Fields → Aggregate → OpenAI(Structured Output) → Split Out → Code(Slack Block) → Slack">
+      <figcaption>n8n 캔버스 · 윗줄은 수집·가공, 아랫줄은 요약·전송입니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>역할</dt><dd>설계 · 구현</dd></div>
+      <div><dt>기간</dt><dd>2025.12</dd></div>
+      <div><dt>LLM 호출</dt><dd>기사 N개당 1회</dd></div>
+      <div><dt>출력</dt><dd>Slack Block 메시지</dd></div>
+    </dl>
+
+    <section class="sec" id="a2-pb">
+      <p class="label">문제</p>
+      <h2>매일 보는 뉴스인데, 매일 손으로 고르고 정리한다</h2>
+      <div class="cards">
+        <div><h3>동적 웹</h3><p>요즘 뉴스 사이트는 JavaScript가 실행돼야 내용이 보여, 단순 HTTP 요청으로는 빈 HTML만 옵니다.</p></div>
+        <div><h3>비용</h3><p>기사마다 LLM을 호출하면 10개 기사에 10번 호출이 됩니다.</p></div>
+        <div><h3>형식</h3><p>"요약해줘"로 받은 자유 텍스트는 Slack 메시지로 바꾸려면 다시 파싱해야 합니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a2-dc">
+      <p class="label">판단</p>
+      <h2>비싼 도구는 꼭 필요한 곳에만, 나머지는 기본 노드로</h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">단계</th><th scope="col" class="hl">선택</th><th scope="col">이유</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">기사 목록</th><td class="hl">Firecrawl Extract (JSON 스키마)</td><td>JS 렌더링이 필요한 목록 페이지. <code>articles[{title, url}]</code> 스키마를 주면 구조화된 결과가 바로 옵니다.</td></tr>
+          <tr><th scope="row">기사 본문</th><td class="hl">HTTP Request + HTML 노드</td><td>본문 영역은 정적 HTML(<code>#dic_area</code>)이라 CSS 셀렉터로 외부 API 없이 추출 → 비용 0.</td></tr>
+          <tr><th scope="row">요약</th><td class="hl">Aggregate 후 LLM 1회 + Structured Output</td><td>기사를 모아 한 번에 보내고, JSON 스키마로 받아 다음 노드가 바로 씁니다.</td></tr>
+          <tr><th scope="row">전송</th><td class="hl">Code 노드 → Slack Block Kit</td><td>제목(링크) + 요약 + 구분선 형식으로 읽기 쉽게.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="a2-ds">
+      <p class="label">설계</p>
+      <h2>Split → 개별 처리 → Aggregate → 일괄 처리 → Split → 개별 전송</h2>
+      <div class="pre">1  Manual Trigger
+2  Firecrawl Extract      네이버 IT 섹션 → <em>{articles:[{title,url}, …]}</em>
+3  Split Out              기사 1건 = 아이템 1개
+4  HTTP Request (Loop)    기사 URL → HTML
+5  HTML Extract           CSS Selector <i>#dic_area</i> → 본문 텍스트
+6  Edit Fields            <em>"TITLE: … \nURL: … \nCONTENT: …"</em> 로 조합
+7  Aggregate              모든 기사를 배열 하나로
+8  OpenAI (Structured)    스키마 <em>{news:[{title,url,content}]}</em> · 기사별 3줄 요약 · 호출 1회
+9  Split Out              요약 1건 = 아이템 1개
+10 Code                   Slack Block Kit (section + divider) 로 변환
+11 Slack                  채널에 전송</div>
+      <div class="split">
+        <div><h3>왜 Split Out을 두 번 쓰는가</h3><p>Firecrawl이 기사 목록을 배열로 주므로 기사별 본문을 가져오려면 한 번 풀어야 하고, LLM이 요약을 다시 배열로 주므로 Slack 블록으로 바꾸려면 또 풀어야 합니다. 중간에 Aggregate로 묶는 이유는 LLM 호출을 1회로 줄이기 위해서입니다.</p></div>
+        <div class="good"><h3>Structured Output을 쓴 이유</h3><p>자유 텍스트 요약은 사람이 읽기엔 좋지만 다음 노드가 쓰기엔 나쁩니다. <code>{title, url, content}</code> 스키마를 강제하면 Code 노드에서 파싱 없이 바로 블록을 만들 수 있고, 필드가 빠지면 LLM 단계에서 실패하므로 오류가 뒤로 전파되지 않습니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a2-rs">
+      <p class="label">결과</p>
+      <h2>버튼 한 번에 기사 목록 → 요약 → Slack 메시지</h2>
+      <p>Slack에는 기사마다 굵은 제목(원문 링크) 아래 3줄 요약이 붙고 구분선으로 나뉘어 도착합니다. 스케줄 트리거로 바꾸면 매일 아침 리포트가 되고, URL과 CSS 셀렉터만 바꾸면 다른 섹션 · 다른 사이트 모니터링으로 재사용됩니다.</p>
+      <p class="note">같은 패턴으로 네이버 뉴스 검색 API → LLM 섹션 분류 → PostgreSQL 저장 파이프라인도 만들었습니다. 수집 결과를 Slack으로 보낼지 DB에 쌓을지는 마지막 노드만 다릅니다.</p>
+      <div class="stack"><span>n8n</span><span>Firecrawl</span><span>HTTP Request</span><span>HTML Extract</span><span>Split Out · Aggregate · Edit Fields</span><span>OpenAI · Structured Output</span><span>Code (JS)</span><span>Slack Block Kit</span><span>PostgreSQL</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#sqlagent">다음 · SQL 리포트 에이전트 →</a></div></div>
+</article>
+
+<!-- ========== CASE: SQL 리포트 에이전트 ========== -->
+<article id="v-sqlagent" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="a3-pb">문제</button><button type="button" data-jump="a3-dc">판단</button><button type="button" data-jump="a3-ds">설계</button><button type="button" data-jump="a3-rs">결과</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">자연어 → SQL 리포트 에이전트 · n8n · PostgreSQL · 개인 실습 · 2026.01</p>
+      <h1>질문하면 SQL을 만들고, 못 하면 이유를 말하는 리포트 에이전트</h1>
+      <p class="lede">"고객 유형별 고객 수 알려줘"처럼 자연어로 물으면 에이전트가 DB 스키마를 바탕으로 SQL을 생성하고, 실행 가능하다고 판정된 경우에만 PostgreSQL에서 조회해 리포트로 요약합니다. 실행하면 안 되는 요청은 거부하고 사유를 돌려줍니다.</p>
+    </header>
+    <figure class="stage sand" style="margin-inline:0">
+      <img src="media/auto-sql.jpg" alt="n8n 캔버스: Chat Trigger → SQL 생성 Agent(OpenAI, Postgres Chat Memory, Structured Output Parser) → Switch → 성공: Execute SQL → Aggregate → 리포트 생성 / 실패: 사유 전달">
+      <figcaption>n8n 캔버스 · Switch 노드가 <code>success</code> 값으로 실행 경로와 거부 경로를 나눕니다.</figcaption>
+    </figure>
+    <dl class="facts">
+      <div><dt>역할</dt><dd>설계 · 프롬프트 · 구현</dd></div>
+      <div><dt>데이터</dt><dd>customers · sales 테이블</dd></div>
+      <div><dt>허용 범위</dt><dd>조회만 (UPDATE · DELETE 금지)</dd></div>
+      <div><dt>출력</dt><dd>SQL / success / reason</dd></div>
+    </dl>
+
+    <section class="sec" id="a3-pb">
+      <p class="label">문제</p>
+      <h2>데이터는 DB에 있는데, 질문할 때마다 SQL을 아는 사람을 찾아야 한다</h2>
+      <p>비개발 동료가 "지난달 VIP 고객 매출 얼마야?"를 알고 싶을 때, SQL을 모르면 요청을 넣고 기다려야 합니다. LLM에게 SQL을 쓰게 하면 빨라지지만, 생성된 SQL을 그대로 DB에 실행하는 건 다른 문제입니다.</p>
+      <div class="cards">
+        <div><h3>위험</h3><p>LLM이 UPDATE · DELETE를 만들어 실행하면 되돌릴 수 없습니다.</p></div>
+        <div><h3>모호함</h3><p>"잘 나가는 상품"처럼 정의가 없는 질문에도 그럴듯한 SQL을 만듭니다.</p></div>
+        <div><h3>분기 불가</h3><p>LLM의 자유 텍스트 응답으로는 "실행할지 말지"를 노드가 판단할 수 없습니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a3-dc">
+      <p class="label">판단</p>
+      <h2>에이전트는 SQL을 '제안'만 하고, 실행 여부는 구조화된 판정값으로 결정한다</h2>
+      <div class="rules">
+        <div><b>시스템 프롬프트</b><span>테이블 구조 · 컬럼 설명 · 금지 행위(UPDATE / DELETE) · 허용 범위(조회)를 명시. 범위 밖 요청은 SQL을 만들지 말고 거부하도록 지시 — 이 프롬프트가 에이전트의 헌법</span></div>
+        <div><b>Output Parser</b><span>응답을 <code>{ SQL, success, reason }</code> JSON으로 강제. <code>success=false</code>면 SQL은 비어 있어도 되고 <code>reason</code>은 필수</span></div>
+        <div><b>Switch</b><span><code>success</code>가 true일 때만 Execute SQL로, false면 사유를 사용자에게 전달. 거부는 에러가 아니라 의사결정으로 취급</span></div>
+        <div><b>Chat Memory</b><span>세션별 대화 이력을 Postgres에 저장해 "그중 VIP만"처럼 이어지는 질문을 처리</span></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a3-ds">
+      <p class="label">설계</p>
+      <h2>스키마 자체에 "성공이면 ok, 실패면 사유 필수" 규칙을 넣었다</h2>
+      <div class="pre">User Chat
+  → SQL 생성 Agent        <em>(DB 스키마 이해 + 거부 가능)</em>
+  → Structured Output     <em>{ SQL, success, reason }</em>
+  → Switch
+      ├─ success = true   → Execute SQL → Aggregate → 결과 분석 · 리포트 생성
+      └─ success = false  → reason 사용자에게 전달 <em>(SQL 실행 ❌)</em></div>
+      <div class="split">
+        <div class="good"><h3>Output Parser 스키마의 핵심</h3><p><code>additionalProperties: false</code>로 정의되지 않은 필드를 차단하고, <code>if success=true → reason = "ok"</code>, <code>if success=false → reason minLength 1</code> 조건을 스키마에 넣어 성공 케이스의 일관성과 실패 케이스의 디버깅 가능성을 동시에 확보했습니다.</p></div>
+        <div><h3>success = false가 나오는 경우</h3><p>의도가 불명확한 질문(정의되지 않은 지표), 스키마에 없는 테이블 · 컬럼, 데이터 변경을 요구하는 요청. 이때 SQL은 생성되지 않고 사용자는 "왜 안 되는지"를 받습니다.</p></div>
+      </div>
+      <div class="cards">
+        <div><h3>리포트 단계 분리</h3><p>SQL 실행 결과는 Aggregate로 묶은 뒤 별도 LLM 노드가 "결과 분석 및 리포트 생성"을 맡습니다. SQL을 만드는 에이전트와 결과를 해석하는 모델의 역할을 나눴습니다.</p></div>
+        <div><h3>JSON.stringify</h3><p>조회 결과(객체 배열)를 리포트 프롬프트에 넣기 위해 문자열로 직렬화했습니다. 빠뜨리면 모델이 <code>[object Object]</code>를 받습니다.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a3-rs">
+      <p class="label">결과</p>
+      <h2>DB + n8n은 "정해진 일을 정확히", DB + Agent는 "할 수 있는지 판단"</h2>
+      <p>같은 DB를 두고 두 가지 워크플로우를 만들어 비교했습니다. 네이버 뉴스를 API로 받아 LLM이 섹션을 분류하고 Postgres에 저장하는 파이프라인은 순서가 고정된 규칙 자동화이고, 이 리포트 에이전트는 질문을 이해하고 실행 가능 여부를 판단하는 에이전트입니다. 두 경우 모두 실제 DB 쓰기는 규칙 노드가 담당합니다.</p>
+      <p class="note">이후 LangGraph로 같은 흐름을 다시 만들 때는 SQL 실행 직전에 사람 승인(Human-in-the-loop) 단계를 추가하고, 승인 후 멈춘 지점부터 이어가도록 체크포인트를 저장했습니다.</p>
+      <div class="stack"><span>n8n</span><span>AI Agent</span><span>OpenAI</span><span>PostgreSQL</span><span>Postgres Chat Memory</span><span>Structured Output Parser</span><span>Switch</span><span>LangGraph (후속)</span></div>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#playbook">다음 · 자동화 판단 기준 →</a></div></div>
+</article>
+
+<!-- ========== CASE: 자동화 판단 기준 ========== -->
+<article id="v-playbook" data-view hidden>
+  <div class="casenav wrap"><nav class="pills" aria-label="목차">
+    <a href="#">← Projects</a>
+    <button class="on" type="button" data-jump="a4-no">체크리스트</button><button type="button" data-jump="a4-st">추천 구조</button><button type="button" data-jump="a4-nd">노드 패턴</button><button type="button" data-jump="a4-sf">안전장치</button>
+  </nav></div>
+  <div class="wrap">
+    <header class="casehead">
+      <p class="eyebrow">자동화 판단 기준 · n8n 워크플로우 50여 개에서 정리</p>
+      <h1>어떤 업무를 규칙으로, 어떤 업무를 에이전트로 풀 것인가</h1>
+      <p class="lede">에이전트는 "문제 해결사"지 "프로세스 실행기"가 아닙니다. 그래서 중요한 실행은 노드가 맡고, 애매한 판단만 에이전트에게 줍니다. 위 세 프로젝트를 이 기준으로 설계했습니다.</p>
+    </header>
+
+    <section class="sec" id="a4-no">
+      <p class="label">체크리스트</p>
+      <h2>이런 업무는 에이전트에 맡기지 않는다</h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">상황</th><th scope="col">예시</th><th scope="col">에이전트가 위험한 이유</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">순서가 고정</th><td>결제 확인 → DB 저장 → 세금계산서 → 알림</td><td>"알림 먼저 보내도 되겠네?" — 순서 보장이 안 됨</td></tr>
+          <tr><th scope="row">되돌릴 수 없음</th><td>결제 승인 · 환불 · 이메일 발송 · 외부 데이터 변경</td><td>확인용으로 같은 툴을 재호출할 수 있음 → 중복 실행</td></tr>
+          <tr><th scope="row">결과가 100% 같아야 함</th><td>회계 · 정산 · KPI 계산 · 법적 문서</td><td>컨텍스트 · 메모리 · 모델 편차로 매번 조금씩 다름</td></tr>
+          <tr><th scope="row">디버깅이 중요</th><td>장애 시 원인 추적이 필요한 파이프라인</td><td>"왜 이 툴을 썼는지"가 로그에 명확히 남지 않음</td></tr>
+          <tr><th scope="row">비용 · 토큰 한도</th><td>대량 반복 처리</td><td>툴 호출 · 관찰 · 루프마다 토큰이 n배 — 질문 1번에 API 5번도 흔함</td></tr>
+          <tr><th scope="row">예외 처리가 명확</th><td>null이면 A · 타입이 다르면 B · 에러코드면 C</td><td>규칙보다 추론을 우선함 → if/else 노드가 훨씬 안전</td></tr>
+          <tr><th scope="row">사람이 책임지는 결정</th><td>금액 확정 · 계약 조건 · 승인/반려</td><td>"그럴듯한 판단"은 잘하지만 책임 판단은 못함</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="sec" id="a4-st">
+      <p class="label">추천 구조</p>
+      <h2>결정론적인 부분은 노드로, 그 위에 에이전트를 얹는다</h2>
+      <div class="pre">[Node 기반 Workflow]        <em>← 결정론 · 순서 보장 · 추적 가능</em>
+   ├─ 데이터 수집
+   ├─ 검증
+   ├─ 저장
+   └─ 실행 (발송 · 쓰기 · 결제)
+
+        ↓  판단이 필요한 지점에서만
+
+[Agent]                     <em>← 해석 · 요약 · 판단 · 응답 생성</em>
+   └─ 출력은 Structured Output 으로 받아 다시 노드가 분기</div>
+      <div class="cards">
+        <div><h3>캘린더 에이전트</h3><p>날짜 해석 · 조건 판단은 에이전트, 충돌 검사 순서와 기준은 프롬프트에 규칙으로 고정.</p></div>
+        <div><h3>뉴스 리포트</h3><p>수집 · 가공 · 전송은 전부 노드, 요약만 LLM 1회.</p></div>
+        <div><h3>SQL 에이전트</h3><p>SQL 제안은 에이전트, 실행 여부는 <code>success</code> 값으로 Switch 노드가 결정.</p></div>
+      </div>
+    </section>
+
+    <section class="sec" id="a4-nd">
+      <p class="label">노드 패턴</p>
+      <h2>n8n에서 반복해서 쓰게 되는 조합</h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">노드</th><th scope="col">역할</th><th scope="col">언제</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Split Out</th><td>아이템 하나 안의 배열을 아이템 여러 개로</td><td>API 응답의 목록을 건별로 처리할 때</td></tr>
+          <tr><th scope="row">Aggregate</th><td>여러 아이템을 하나로</td><td>LLM 호출을 1회로 줄일 때, 묶어서 저장할 때</td></tr>
+          <tr><th scope="row">Edit Fields</th><td>필드 추가 · 이름 변경 · 자료형 변환 · 필요한 필드만 추출</td><td>LLM 프롬프트용 텍스트를 조합할 때</td></tr>
+          <tr><th scope="row">Filter</th><td>조건에 맞는 아이템만 통과</td><td>임계값 이상만 알림을 보낼 때</td></tr>
+          <tr><th scope="row">Summarize</th><td>Count · Sum · Avg · Group By</td><td>엑셀 피벗처럼 리포트 숫자를 만들 때</td></tr>
+          <tr><th scope="row">Merge</th><td>Append · Position · Matching Fields(JOIN)</td><td>두 소스를 키로 합칠 때</td></tr>
+          <tr><th scope="row">Switch</th><td>값에 따라 경로 분기</td><td>Structured Output의 판정값으로 실행/거부를 나눌 때</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Split → 개별 처리 → Aggregate → 일괄 처리 → Split → 개별 전송. 뉴스 리포트, 쇼핑 가격 수집, 기상청 공공데이터 가공 모두 이 한 가지 패턴의 변형이었습니다.</p>
+    </section>
+
+    <section class="sec" id="a4-sf">
+      <p class="label">안전장치</p>
+      <h2>에이전트를 실무에 붙일 때 같이 넣는 것</h2>
+      <div class="cards">
+        <div><h3>Structured Output</h3><p>자유 텍스트 대신 JSON 스키마로 받아 다음 노드가 분기할 수 있게. <code>additionalProperties:false</code>로 규격 외 필드 차단.</p></div>
+        <div><h3>Guardrails 노드</h3><p>AI에게 전달되기 전 개인정보 마스킹 · 유해 입력 필터링.</p></div>
+        <div><h3>금지 행위 명시</h3><p>시스템 프롬프트에 허용 범위와 금지 행위(쓰기 · 삭제)를 적고, 범위 밖은 "거부 + 사유"로 응답.</p></div>
+        <div><h3>사람 승인</h3><p>되돌릴 수 없는 실행 앞에는 Human-in-the-loop. 승인 후 멈춘 지점부터 재개되도록 상태 저장.</p></div>
+        <div><h3>툴 결과로만 답하기</h3><p>조회 요청은 반드시 툴을 호출한 결과로만 답하도록 해 추측 응답을 차단.</p></div>
+        <div><h3>실패 메시지 고정</h3><p>툴 실패 시 한 줄 고정 문구만 출력해, 장애를 그럴듯한 문장으로 가리지 않게.</p></div>
+      </div>
+      <p class="note">그 외 실습: Google Calendar CRUD 봇 · 날씨/환율 의도 분기 에이전트 · 네이버 뉴스 API → Postgres 저장 · AI 농담 생성·평가 Slack 봇(Google Sheets 누적) · 네이버 쇼핑/기상청 공공데이터 가공 · RAG/하이브리드 RAG 에이전트(pgvector · Pinecone).</p>
+    </section>
+  </div>
+  <div class="wrap"><div class="casefoot"><a href="#">← 전체 프로젝트</a><a href="#weather">처음으로 · 캘린더 에이전트 →</a></div></div>
+</article>
+
 <script>
 (function () {
-  var views = ['chatbot', 'sunscreen', 'meetup', 'qrcheck'];
+  var views = ['chatbot', 'sunscreen', 'meetup', 'qrcheck', 'weather', 'news', 'sqlagent', 'playbook'];
   function show() {
     var h = location.hash.replace('#', '');
     var target = views.indexOf(h) >= 0 ? h : 'home';
